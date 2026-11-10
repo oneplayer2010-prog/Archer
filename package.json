@@ -1,0 +1,19 @@
+{
+  "name": "archer-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "check": "node --check server.js && node --check app.js"
+  },
+  "dependencies": {
+    "express": "4.22.3",
+    "express-rate-limit": "8.7.4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@10.9.9"
+}

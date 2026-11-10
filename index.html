@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#171522">
+  <meta name="description" content="ARCHER — personaggi, storie e mondi da esplorare.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg">
+  <title>ARCHER — Character Universe</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="adultGate" class="adult-gate" role="dialog" aria-modal="true" aria-labelledby="adultTitle">
+    <div class="adult-card">
+      <div class="gate-mark">18+</div>
+      <p class="eyebrow">ACCESSO RISERVATO</p>
+      <h1 id="adultTitle">Esperienza per adulti</h1>
+      <p>ARCHER può includere conversazioni romantiche e sessuali esplicite tra personaggi adulti. L’uso è solo per persone che hanno almeno 18 anni.</p>
+      <p class="hint">I personaggi devono essere adulti e il roleplay consensuale. La conferma è un’autodichiarazione, non una verifica dell’identità o dell’età.</p>
+      <label class="age-check"><input id="adultConfirm" type="checkbox"> Confermo di avere almeno 18 anni e voglio continuare.</label>
+      <button id="enterAdult" class="primary" disabled>Continua</button>
+      <button id="leaveAdult" class="gate-leave">Esci</button>
+    </div>
+  </div>
+  <main class="app">
+    <header><div class="brand"><b>A</b><div><strong>ARCHER</strong><small>CHARACTER UNIVERSE</small></div></div><span id="aiStatus" class="status">● connessione IA…</span></header>
+    <nav aria-label="Navigazione principale"><button class="tab active" data-page="discover">Scopri</button><button class="tab" data-page="create">Crea</button><button class="tab" data-page="memory">Memoria</button></nav>
+    <section id="discover" class="page">
+      <div class="hero"><p class="eyebrow">IL TUO UNIVERSO NARRATIVO</p><h1>Il prossimo incontro<br>inizia qui.</h1><p class="muted">Personaggi, storie e mondi da esplorare.</p></div>
+      <input id="search" placeholder="⌕ Cerca un personaggio o una storia" aria-label="Cerca un personaggio o una storia">
+      <div class="filters">
+        <select id="genre" aria-label="Genere narrativo"><option value="">Tutti i generi narrativi</option><option>Romance</option><option>Fantasy</option><option>Mistero</option><option>Avventura</option><option>Slice of life</option></select>
+        <select id="gender" aria-label="Genere del personaggio"><option value="">Tutti i generi</option><option>Donna</option><option>Uomo</option><option>Non binario</option></select>
+        <select id="age" aria-label="Età"><option value="">Tutte le età</option><option value="18-24">18–24</option><option value="25-34">25–34</option><option value="35+">35+</option></select>
+      </div>
+      <p id="count" class="muted"></p><div id="cards" class="cards" aria-live="polite"></div>
+    </section>
+    <section id="create" class="page hidden">
+      <h1>Character Studio</h1><p class="muted">Dai vita a un personaggio originale maggiorenne.</p>
+      <form id="createForm" class="panel">
+        <label>Nome<input name="name" required maxlength="80" placeholder="Nome del personaggio"></label>
+        <div class="filters"><label>Età (18+)<input name="age" type="number" min="18" max="99" value="24" required></label><label>Genere<select name="gender"><option>Donna</option><option>Uomo</option><option>Non binario</option></select></label></div>
+        <label>Avatar emoji<input name="avatar" value="🌙" maxlength="8"></label>
+        <label>Immagine avatar<input id="avatarFile" type="file" accept="image/png,image/jpeg,image/webp"><small class="hint">Ridimensionata nel browser prima del salvataggio.</small></label>
+        <label>Genere narrativo<select name="genre"><option>Slice of life</option><option>Romance</option><option>Fantasy</option><option>Mistero</option><option>Avventura</option></select></label>
+        <label>Backstory<textarea name="backstory" rows="4" placeholder="Passato, obiettivi, segreti, mondo..."></textarea></label>
+        <label>Carattere<textarea name="traits" rows="2" placeholder="Ironico, riservato, ambizioso..."></textarea></label>
+        <label>Modo di parlare<input name="speech" placeholder="Colloquiale, elegante, sarcastico..."></label>
+        <label>Messaggio di benvenuto<textarea name="welcome" rows="2"></textarea></label>
+        <label>Istruzioni narrative<textarea name="instructions" rows="3" placeholder="Regole e comportamenti del personaggio..."></textarea></label>
+        <button class="primary">Salva personaggio</button><p id="createStatus" class="muted" aria-live="polite"></p>
+      </form>
+    </section>
+    <section id="memory" class="page hidden">
+      <h1>Memory Core</h1><p class="muted">Continuità narrativa del personaggio attivo.</p>
+      <div class="panel"><h3 id="memName">Nessun personaggio selezionato</h3><p>Affinità narrativa: <b id="affinity">0</b></p><div id="memoryList" class="memory-list">I ricordi compariranno qui.</div></div>
+      <p class="hint">La memoria automatica conserva eventi della storia immaginaria, non dati personali sensibili.</p>
+    </section>
+    <section id="chat" class="page hidden">
+      <div class="chathead"><button id="back" aria-label="Torna al catalogo">←</button><div class="chat-avatar" id="chatAvatar">✦</div><div><b id="chatName"></b><small id="chatMeta"></small></div></div>
+      <div class="chat-stats"><span>♥ Affinità <b id="chatAffinity">0</b></span><span>✧ <b id="chatMood">Neutrale</b></span></div>
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="chatForm" class="composer"><textarea id="message" rows="2" placeholder="Scrivi il tuo messaggio..." required aria-label="Il tuo messaggio"></textarea><button class="primary">Invia ↑</button></form>
+      <p class="hint">Roleplay tra adulti; le risposte dipendono dal modello IA e dalle sue policy.</p>
+    </section>
+    <footer>ARCHER · IMAGINE BEYOND THE CONVERSATION</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

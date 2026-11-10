@@ -1,0 +1,16 @@
+{
+  "id": "/",
+  "name": "ARCHER Character Universe",
+  "short_name": "ARCHER",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#10131d",
+  "theme_color": "#171522",
+  "lang": "it",
+  "description": "Personaggi, storie e mondi da esplorare dal tuo smartphone.",
+  "categories": ["entertainment", "lifestyle"],
+  "icons": [{"src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]
+}

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: archer
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: ACCESS_TOKEN
+        sync: false
+      - key: LLM_API_URL
+        value: https://openrouter.ai/api/v1
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
